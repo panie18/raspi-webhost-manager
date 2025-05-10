@@ -6,190 +6,78 @@
     <title>Login - Raspi Webhost Manager</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/auth.css">
+    <style>* { font-family: 'Space Grotesk', sans-serif !important; }</style>
 </head>
 <body>
     <div class="auth-container">
         <div class="auth-card">
             <div class="auth-header">
-                <img src="img/logo.png" alt="Raspi Webhost Manager">
                 <h1>Raspi Webhost Manager</h1>
             </div>
             
-            <!-- Login Form -->
-            <div id="login-form" class="auth-form">
-                <h2>Welcome Back</h2>
-                <p>Please login to continue to the dashboard</p>
-                
-                <div id="login-error" class="auth-error" style="display: none;">
-                    <i class="fas fa-exclamation-circle"></i>
-                    <span id="login-error-message">Invalid username or password</span>
-                </div>
-                
-                <form id="form-login">
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <div class="input-icon">
-                            <i class="fas fa-user"></i>
-                            <input type="text" id="username" name="username" placeholder="Enter your username" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <div class="input-icon">
-                            <i class="fas fa-lock"></i>
-                            <input type="password" id="password" name="password" placeholder="Enter your password" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group checkbox">
-                        <input type="checkbox" id="remember" name="remember">
-                        <label for="remember">Remember me</label>
-                    </div>
-                    
-                    <button type="submit" class="glass-btn full-width">
-                        <i class="fas fa-sign-in-alt"></i> Login
-                    </button>
-                </form>
-                
-                <div class="auth-footer">
-                    <p>Made with ❤️ by Paulify Development</p>
-                </div>
-            </div>
-            
-            <!-- First Run Setup Wizard -->
-            <div id="setup-wizard" class="auth-form" style="display: none;">
-                <div class="setup-progress">
-                    <div class="step active" data-step="1">1</div>
-                    <div class="progress-line"></div>
-                    <div class="step" data-step="2">2</div>
-                    <div class="progress-line"></div>
-                    <div class="step" data-step="3">3</div>
-                </div>
-                
+            <div id="setup-wizard" class="auth-form">
                 <!-- Step 1: Welcome -->
                 <div class="setup-step active" data-step="1">
-                    <h2>Welcome to Raspi Webhost Manager</h2>
-                    <p>Let's set up your account to get started</p>
+                    <h2 style="color: white; margin-bottom: 20px;">Welcome to Raspi Webhost Manager</h2>
                     
-                    <div class="welcome-image">
-                        <i class="fas fa-rocket"></i>
-                    </div>
+                    <p style="color: white; margin-bottom: 30px;">This wizard will help you set up your Raspberry Pi hosting platform</p>
                     
-                    <p class="setup-description">This wizard will help you set up your Raspberry Pi hosting platform with Apache, SSL certificates, and optional Nextcloud installation.</p>
-                    
-                    <button class="glass-btn full-width next-step" data-next="2">
+                    <button class="glass-btn next-step" data-next="2" style="margin-top: 20px; width: 100%;">
                         <i class="fas fa-arrow-right"></i> Get Started
                     </button>
                 </div>
                 
                 <!-- Step 2: User Information -->
                 <div class="setup-step" data-step="2">
-                    <h2>Create Your Account</h2>
-                    <p>Enter your details below</p>
+                    <h2 style="color: white; margin-bottom: 20px;">Create Your Account</h2>
                     
                     <div class="form-group">
                         <label for="setup-name">Your Name</label>
-                        <div class="input-icon">
-                            <i class="fas fa-user"></i>
-                            <input type="text" id="setup-name" name="name" placeholder="Enter your full name" required>
-                        </div>
+                        <input type="text" id="setup-name" name="name" placeholder="Enter your full name" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="setup-username">Username</label>
-                        <div class="input-icon">
-                            <i class="fas fa-id-badge"></i>
-                            <input type="text" id="setup-username" name="username" placeholder="Choose a username" required>
-                        </div>
+                        <input type="text" id="setup-username" name="username" placeholder="Choose a username" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="setup-password">Password</label>
-                        <div class="input-icon">
-                            <i class="fas fa-lock"></i>
-                            <input type="password" id="setup-password" name="password" placeholder="Choose a secure password" required>
-                        </div>
+                        <input type="password" id="setup-password" name="password" placeholder="Choose a secure password" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="setup-confirm">Confirm Password</label>
-                        <div class="input-icon">
-                            <i class="fas fa-lock"></i>
-                            <input type="password" id="setup-confirm" name="confirm" placeholder="Confirm your password" required>
-                        </div>
+                        <input type="password" id="setup-confirm" name="confirm" placeholder="Confirm your password" required>
                     </div>
                     
-                    <div class="button-group">
-                        <button class="glass-btn back-step" data-back="1">
-                            <i class="fas fa-arrow-left"></i> Back
-                        </button>
-                        <button class="glass-btn next-step" data-next="3">
-                            <i class="fas fa-arrow-right"></i> Next
-                        </button>
+                    <div style="display: flex; gap: 10px; margin-top: 20px;">
+                        <button class="glass-btn back-step" data-back="1" style="flex: 1;">Back</button>
+                        <button class="glass-btn next-step" data-next="3" style="flex: 1;">Next</button>
                     </div>
                 </div>
                 
-                <!-- Step 3: System Settings -->
+                <!-- Step 3: Finish -->
                 <div class="setup-step" data-step="3">
-                    <h2>System Settings</h2>
-                    <p>Configure your hosting environment</p>
+                    <h2 style="color: white; margin-bottom: 20px;">Almost Done!</h2>
+                    <p style="color: white;">Your Raspi Webhost Manager is almost ready.</p>
                     
-                    <div class="form-group">
-                        <label for="setup-hostname">Hostname</label>
-                        <div class="input-icon">
-                            <i class="fas fa-server"></i>
-                            <input type="text" id="setup-hostname" name="hostname" placeholder="e.g., webhost.local" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="setup-email">Default Email (for SSL certificates)</label>
-                        <div class="input-icon">
-                            <i class="fas fa-envelope"></i>
-                            <input type="email" id="setup-email" name="email" placeholder="Enter your email address" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group toggle-container">
-                        <label>Enable Automatic Updates</label>
-                        <div class="toggle-switch">
-                            <input type="checkbox" id="auto-updates" name="auto-updates" checked>
-                            <label for="auto-updates"></label>
-                        </div>
-                    </div>
-                    
-                    <button class="glass-btn full-width" id="complete-setup">
-                        <i class="fas fa-check-circle"></i> Complete Setup
+                    <button class="glass-btn" id="complete-setup" style="width: 100%; margin-top: 20px;">
+                        Complete Setup
                     </button>
                     
-                    <button class="glass-btn back-step" data-back="2">
-                        <i class="fas fa-arrow-left"></i> Back
+                    <button class="glass-btn back-step" data-back="2" style="width: 100%; margin-top: 10px;">
+                        Back
                     </button>
                 </div>
             </div>
             
-            <!-- Setup Complete -->
-            <div id="setup-complete" class="auth-form" style="display: none;">
-                <div class="success-animation">
-                    <i class="fas fa-check-circle"></i>
-                </div>
-                
-                <h2>Setup Complete!</h2>
-                <p>Your Raspi Webhost Manager is ready to use.</p>
-                
-                <div class="setup-info">
-                    <p>You can now log in with your new account:</p>
-                    <p><strong>Username:</strong> <span id="created-username">admin</span></p>
-                </div>
-                
-                <button class="glass-btn full-width" id="goto-login">
-                    <i class="fas fa-sign-in-alt"></i> Proceed to Login
-                </button>
+            <div style="text-align: center; margin-top: 30px; color: white;">
+                <p>Made with ❤️ by Paulify Development</p>
             </div>
         </div>
     </div>
