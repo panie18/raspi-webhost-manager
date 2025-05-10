@@ -19,18 +19,18 @@ document.addEventListener('DOMContentLoaded', function() {
             const currentStep = parseInt(this.getAttribute('data-next')) - 1;
             const nextStep = parseInt(this.getAttribute('data-next'));
             
-            // Validate current step if needed
-            if (currentStep === 1) {
+            // First step does not need validation (from step 1 to step 2)
+            if (currentStep === 1) { // Validate moving from step 2 to step 3
                 const password = document.getElementById('setup-password').value;
                 const confirm = document.getElementById('setup-confirm').value;
                 
-                if (password !== confirm) {
-                    showToast('Passwords do not match!', 'error');
+                if (password && password.length < 8) {
+                    showToast('Password must be at least 8 characters', 'error');
                     return;
                 }
                 
-                if (password.length < 8) {
-                    showToast('Password must be at least 8 characters', 'error');
+                if (password && confirm && password !== confirm) {
+                    showToast('Passwords do not match!', 'error');
                     return;
                 }
             }
@@ -99,6 +99,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // Validate all fields are filled
             if (!name || !username || !password || !hostname || !email) {
                 showToast('Please fill all required fields', 'error');
+                return;
+            }
+            
+            // Validate password again
+            if (password.length < 8) {
+                showToast('Password must be at least 8 characters', 'error');
                 return;
             }
             

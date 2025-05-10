@@ -14,6 +14,7 @@ body {
     min-height: 100vh;
     padding: 20px;
     overflow-x: hidden;
+    font-family: 'Space Grotesk', sans-serif;
 }
 
 .auth-container {
@@ -49,18 +50,23 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
 }
 
 .auth-form h2 {
     font-size: 1.5rem;
     margin-bottom: 10px;
     text-align: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
 }
 
 .auth-form p {
     text-align: center;
     margin-bottom: 25px;
     color: var(--text-light);
+    font-family: 'Space Grotesk', sans-serif;
 }
 
 .input-icon {
@@ -77,6 +83,7 @@ body {
 
 .input-icon input {
     padding-left: 45px !important;
+    font-family: 'Space Grotesk', sans-serif;
 }
 
 .form-group.checkbox {
@@ -92,6 +99,7 @@ body {
 .form-group.checkbox label {
     margin: 0;
     font-weight: normal;
+    font-family: 'Space Grotesk', sans-serif;
 }
 
 .full-width {
@@ -122,6 +130,7 @@ body {
     margin-top: 30px;
     font-size: 0.9rem;
     color: var(--text-light);
+    font-family: 'Space Grotesk', sans-serif;
 }
 
 /* Setup Wizard Styles */
@@ -145,6 +154,7 @@ body {
     border: 2px solid var(--border-color);
     position: relative;
     z-index: 2;
+    font-family: 'Space Grotesk', sans-serif;
 }
 
 .step.active {
@@ -206,6 +216,7 @@ body {
     margin: 20px 0;
     border: 1px solid rgba(255, 255, 255, 0.2);
     line-height: 1.6;
+    font-family: 'Space Grotesk', sans-serif;
 }
 
 .button-group {
@@ -247,6 +258,7 @@ body {
 .setup-info p {
     text-align: left;
     margin-bottom: 10px;
+    font-family: 'Space Grotesk', sans-serif;
 }
 
 .setup-info p:last-child {
