@@ -1,0 +1,71 @@
+/* System Statistics Styles */
+.system-stats {
+    margin-top: 15px;
+}
+
+.stats-details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.system-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.system-info p {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.cpu-temperature {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-top: 2px;
+}
+
+/* Add gradients to progress bars based on usage percentages */
+.progress-bar .progress.cpu-progress {
+    background: linear-gradient(to right, 
+        #2ecc71, /* Green for low usage */
+        #f1c40f, /* Yellow for medium usage */
+        #e74c3c   /* Red for high usage */
+    );
+    background-size: 300% 100%;
+    background-position: left;
+    transition: background-position 0.5s;
+}
+
+/* Adjust gradient position based on usage */
+.progress-bar .progress.cpu-progress[style*="width: 5"],
+.progress-bar .progress.cpu-progress[style*="width: 4"],
+.progress-bar .progress.cpu-progress[style*="width: 3"],
+.progress-bar .progress.cpu-progress[style*="width: 2"],
+.progress-bar .progress.cpu-progress[style*="width: 1"] {
+    background-position: 0% 0%;
+}
+
+.progress-bar .progress.cpu-progress[style*="width: 6"],
+.progress-bar .progress.cpu-progress[style*="width: 7"] {
+    background-position: 50% 0%;
+}
+
+.progress-bar .progress.cpu-progress[style*="width: 8"],
+.progress-bar .progress.cpu-progress[style*="width: 9"] {
+    background-position: 100% 0%;
+}
+
+/* Memory progress bar */
+.progress-bar .progress.memory-progress {
+    background: linear-gradient(to right, #3498db, #9b59b6);
+}
+
+/* Disk progress bar */
+.progress-bar .progress.disk-progress {
+    background: linear-gradient(to right, #1abc9c, #3498db);
+}

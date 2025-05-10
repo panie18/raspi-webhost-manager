@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raspi Webhost Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/logout-menu.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="img/logo.png" alt="Raspi Webhost Manager">
+            <h2>Raspi Webhost</h2>
+        </div>
+        <nav>
+            <ul>
+                <li class="active" data-section="dashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </li>
+                <li data-section="apache">
+                    <i class="fas fa-server"></i>
+                    <span>Apache</span>
+                </li>
+                <li data-section="ssl">
+                    <i class="fas fa-lock"></i>
+                    <span>SSL Certificates</span>
+                </li>
+                <li data-section="nextcloud">
+                    <i class="fas fa-cloud"></i>
+                    <span>Nextcloud</span>
+                </li>
+                <li data-section="settings">
+                    <i class="fas fa-cogs"></i>
+                    <span>Settings</span>
+                </li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <p>Made with ❤️</p>
+            <p>Paulify Development</p>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search...">
+            </div>
+            <div class="user-info">
+                <div class="notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </div>
+                <div class="user">
+                    <img src="img/user.png" alt="User">
+                    <span>Admin</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="content-container">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section active">
+                <h1>Dashboard</h1>
+                <div class="dashboard-cards">
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Websites</h3>
+                            <p class="counter website-counter">0</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>SSL Certificates</h3>
+                            <p class="counter ssl-counter">0</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Nextcloud Status</h3>
+                            <p>Not Installed</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>CPU Usage</h3>
+                            <div class="progress-bar">
+                                <div class="progress cpu-progress" style="width: 15%"></div>
+                            </div>
+                            <p class="cpu-percentage">15%</p>
+                            <p class="cpu-temperature">45.2°C</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="dashboard-item">
+                        <h3>Server Status</h3>
+                        <div class="status-card">
+                            <div class="status-item" data-service="apache">
+                                <span>Apache:</span>
+                                <span class="status-badge active">Running</span>
+                            </div>
+                            <div class="status-item" data-service="php">
+                                <span>PHP:</span>
+                                <span class="status-badge active">Running</span>
+                            </div>
+                            <div class="status-item" data-service="mysql">
+                                <span>MySQL:</span>
+                                <span class="status-badge active">Running</span>
+                            </div>
+                            <div class="status-item" data-service="certbot">
+                                <span>Certbot:</span>
+                                <span class="status-badge active">Installed</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-item">
+                        <h3>Quick Actions</h3>
+                        <div class="quick-actions">
+                            <button class="glass-btn" data-section="apache">
+                                <i class="fas fa-plus"></i> Add Website
+                            </button>
+                            <button class="glass-btn" data-section="ssl">
+                                <i class="fas fa-lock"></i> SSL Certificate
+                            </button>
+                            <button class="glass-btn" data-section="nextcloud">
+                                <i class="fas fa-cloud"></i> Setup Nextcloud
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="dashboard-item">
+                        <h3>Memory Usage</h3>
+                        <div class="system-stats">
+                            <div class="progress-bar">
+                                <div class="progress memory-progress" style="width: 25%"></div>
+                            </div>
+                            <div class="stats-details">
+                                <p class="memory-percentage">25%</p>
+                                <p class="memory-details">256MB used of 1024MB</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-item">
+                        <h3>Disk Usage</h3>
+                        <div class="system-stats">
+                            <div class="progress-bar">
+                                <div class="progress disk-progress" style="width: 15%"></div>
+                            </div>
+                            <div class="stats-details">
+                                <p class="disk-percentage">15%</p>
+                                <p class="disk-details">5GB used of 32GB</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-item">
+                    <h3>System Information</h3>
+                    <div class="system-info">
+                        <p><strong>Uptime:</strong> <span class="uptime">2d 5h 37m 12s</span></p>
+                        <p><strong>Hostname:</strong> <span id="hostname">raspberrypi</span></p>
+                        <p><strong>IP Address:</strong> <span id="ip-address">192.168.1.100</span></p>
+                        <p><strong>Last Update:</strong> <span id="last-update">2025-05-10 18:37:49</span></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Apache Section -->
+            <section id="apache" class="section">
+                <h1>Apache Server Management</h1>
+                <div class="content-box">
+                    <div class="box-header">
+                        <h2>Add New Website</h2>
+                    </div>
+                    <div class="box-content">
+                        <form id="apache-form">
+                            <div class="form-group">
+                                <label for="site-name">Domain Name:</label>
+                                <input type="text" id="site-name" placeholder="example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="document-root">Document Root:</label>
+                                <input type="text" id="document-root" placeholder="/var/www/example.com" required>
+                            </div>
+                            <button type="submit" class="glass-btn">
+                                <i class="fas fa-plus"></i> Create Website
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="content-box">
+                    <div class="box-header">
+                        <h2>Existing Websites</h2>
+                    </div>
+                    <div class="box-content">
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Domain</th>
+                                        <th>Document Root</th>
+                                        <th>SSL</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="websites-list">
+                                    <tr>
+                                        <td colspan="4" class="text-center">No websites configured yet</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SSL Section -->
+            <section id="ssl" class="section">
+                <h1>SSL Certificates</h1>
+                <div class="content-box">
+                    <div class="box-header">
+                        <h2>Create SSL Certificate</h2>
+                    </div>
+                    <div class="box-content">
+                        <form id="ssl-form">
+                            <div class="form-group">
+                                <label for="ssl-domain">Domain Name:</label>
+                                <input type="text" id="ssl-domain" placeholder="example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="ssl-email">Email Address:</label>
+                                <input type="email" id="ssl-email" placeholder="your@email.com" required>
+                            </div>
+                            <button type="submit" class="glass-btn">
+                                <i class="fas fa-lock"></i> Generate Certificate
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="content-box">
+                    <div class="box-header">
+                        <h2>Existing Certificates</h2>
+                    </div>
+                    <div class="box-content">
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Domain</th>
+                                        <th>Expiry Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="certificates-list">
+                                    <tr>
+                                        <td colspan="4" class="text-center">No certificates found</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Nextcloud Section -->
+            <section id="nextcloud" class="section">
+                <h1>Nextcloud Installation</h1>
+                <div class="content-box">
+                    <div class="box-header">
+                        <h2>Install Nextcloud</h2>
+                    </div>
+                    <div class="box-content">
+                        <div id="nextcloud-status" class="alert alert-info">
+                            <i class="fas fa-info-circle"></i> Nextcloud is not installed yet.
+                        </div>
+                        <form id="nextcloud-form">
+                            <div class="form-group">
+                                <label for="nc-domain">Domain Name:</label>
+                                <input type="text" id="nc-domain" placeholder="cloud.example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="nc-directory">Installation Directory:</label>
+                                <input type="text" id="nc-directory" placeholder="/var/www/nextcloud" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="nc-admin">Admin Username:</label>
+                                <input type="text" id="nc-admin" placeholder="admin" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="nc-password">Admin Password:</label>
+                                <input type="password" id="nc-password" placeholder="Password" required>
+                            </div>
+                            <button type="submit" class="glass-btn">
+                                <i class="fas fa-cloud"></i> Install Nextcloud
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="content-box" id="nextcloud-config" style="display: none;">
+                    <div class="box-header">
+                        <h2>Nextcloud Configuration</h2>
+                    </div>
+                    <div class="box-content">
+                        <div class="nextcloud-details">
+                            <p><strong>Status:</strong> <span id="nc-status">Running</span></p>
+                            <p><strong>URL:</strong> <a href="#" id="nc-url" target="_blank">https://cloud.example.com</a></p>
+                            <p><strong>Version:</strong> <span id="nc-version">-</span></p>
+                            <div class="button-group">
+                                <button class="glass-btn">
+                                    <i class="fas fa-sync"></i> Update
+                                </button>
+                                <button class="glass-btn">
+                                    <i class="fas fa-cog"></i> Maintenance Mode
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings" class="section">
+                <h1>Settings</h1>
+                <div class="content-box">
+                    <div class="box-header">
+                        <h2>System Settings</h2>
+                    </div>
+                    <div class="box-content">
+                        <form id="settings-form">
+                            <div class="form-group">
+                                <label for="default-path">Default Document Root Path:</label>
+                                <input type="text" id="default-path" value="/var/www">
+                            </div>
+                            <div class="form-group">
+                                <label for="cert-email">Default Email for Certificates:</label>
+                                <input type="email" id="cert-email" placeholder="your@email.com">
+                            </div>
+                            <div class="form-group toggle-container">
+                                <label for="auto-renew">Auto-renew SSL Certificates:</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="auto-renew" checked>
+                                    <label for="auto-renew"></label>
+                                </div>
+                            </div>
+                            <button type="submit" class="glass-btn">
+                                <i class="fas fa-save"></i> Save Settings
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="content-box">
+                    <div class="box-header">
+                        <h2>Theme</h2>
+                    </div>
+                    <div class="box-content">
+                        <div class="theme-selector">
+                            <div class="theme-option active" data-theme="light">
+                                <div class="theme-preview light"></div>
+                                <span>Light</span>
+                            </div>
+                            <div class="theme-option" data-theme="dark">
+                                <div class="theme-preview dark"></div>
+                                <span>Dark</span>
+                            </div>
+                            <div class="theme-option" data-theme="sunset">
+                                <div class="theme-preview sunset"></div>
+                                <span>Sunset</span>
+                            </div>
+                            <div class="theme-option" data-theme="ocean">
+                                <div class="theme-preview ocean"></div>
+                                <span>Ocean</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="js/scripts.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

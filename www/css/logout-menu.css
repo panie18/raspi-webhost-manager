@@ -1,0 +1,64 @@
+/* Logout Menu Styles */
+.logout-menu {
+    position: absolute;
+    background: var(--card-bg);
+    border-radius: 10px;
+    min-width: 200px;
+    box-shadow: var(--shadow-medium);
+    overflow: hidden;
+    z-index: 1000;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.logout-user-info {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.logout-user-info img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.logout-name {
+    font-weight: 500;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.logout-username {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--text-light);
+}
+
+.logout-divider {
+    height: 1px;
+    background-color: var(--border-color);
+}
+
+.logout-item {
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.logout-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.logout-item i {
+    margin-right: 10px;
+    color: #e74c3c;
+}
