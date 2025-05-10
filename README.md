@@ -8,7 +8,7 @@ Moderne Flask-Webanwendung zur Verwaltung von Apache-Webseiten **mit Glassmorphi
 curl -sSL https://raw.githubusercontent.com/panie18/raspi-webhost-manager/main/install.sh | bash
 ```
 
-(ODER ein eigenes Repo angeben: `install.sh https://github.com/panie18/raspi-webhost-manager.git`)
+
 
 ## 🌐 Webinterface
 
