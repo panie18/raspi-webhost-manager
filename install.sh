@@ -1,40 +1,48 @@
 #!/bin/bash
 
-# Update system
-sudo apt update && sudo apt upgrade -y
+# Abbruch bei Fehler
+set -e
 
-# Install core packages
-sudo apt install -y apache2 python3 python3-pip git certbot python3-certbot-apache
+echo "📦 Installing system dependencies..."
+sudo apt update
+sudo apt install -y apache2 python3 python3-pip python3-venv git certbot python3-certbot-apache curl
 
-# Clone repository (assumes public GitHub repo exists)
-REPO=${1:-"https://github.com/USERNAME/raspi-webhost-manager.git"}
-sudo git clone "$REPO" /opt/raspi-webhost-manager
+echo "📁 Cloning repository..."
+sudo git clone https://github.com/panie18/raspi-webhost-manager.git /opt/raspi-webhost-manager
 
-# Install Python requirements
+echo "🐍 Setting up Python virtual environment..."
 cd /opt/raspi-webhost-manager
-sudo pip3 install -r requirements.txt
+python3 -m venv venv
+source venv/bin/activate
 
-# Create systemd service for Flask app
-sudo bash -c 'cat > /etc/systemd/system/raspi-webhost-manager.service <<EOF
+echo "📦 Installing Python dependencies..."
+pip install --upgrade pip
+pip install -r requirements.txt
+
+echo "🛠️ Creating systemd service for Flask app..."
+
+# Systemd Service-Datei erstellen
+sudo tee /etc/systemd/system/raspi-webhost.service > /dev/null <<EOF
 [Unit]
-Description=Raspi Webhost Manager
+Description=Raspberry Pi Webhost Manager
 After=network.target
 
 [Service]
-User=root
+User=www-data
 WorkingDirectory=/opt/raspi-webhost-manager
-ExecStart=/usr/bin/flask run --host=0.0.0.0 --port=5000
-Environment=FLASK_APP=app
+ExecStart=/opt/raspi-webhost-manager/venv/bin/python3 app.py
 Restart=always
 
 [Install]
 WantedBy=multi-user.target
-EOF'
+EOF
 
+echo "✅ Enabling and starting systemd service..."
+sudo systemctl daemon-reexec
 sudo systemctl daemon-reload
-sudo systemctl enable raspi-webhost-manager --now
+sudo systemctl enable raspi-webhost
+sudo systemctl start raspi-webhost
 
-# Cronjob for automatic cert renewal
-(crontab -l 2>/dev/null; echo "0 3 * * * /usr/bin/certbot renew --quiet") | crontab -
-
-echo "Installation complete. Open http://<Pi_IP>:5000 in your browser."
+echo ""
+echo "✅ Installation complete!"
+echo "🌐 Open your browser and go to: http://<YOUR_PI_IP>:5000"
